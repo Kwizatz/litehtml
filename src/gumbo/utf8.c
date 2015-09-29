@@ -19,8 +19,9 @@
 #include <assert.h>
 #include <stdint.h>
 #include <string.h>
-#ifdef WIN32
+#ifdef _MSC_VER
 #define strcasecmp _stricmp
+#define strncasecmp _strnicmp
 #else
 #include <strings.h>
 #endif

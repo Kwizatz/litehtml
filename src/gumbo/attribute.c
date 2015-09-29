@@ -19,7 +19,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
-#ifdef WIN32
+#ifdef _MSC_VER
 #define strcasecmp _stricmp
 #else
 #include <strings.h>

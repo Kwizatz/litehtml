@@ -2,10 +2,15 @@ cmake_minimum_required(VERSION 2.8)
 
 project(litehtml)
 
-set(CMAKE_CXX_FLAGS_DEBUG "-std=c++11 -O0 -DDEBUG -g")
-set(CMAKE_C_FLAGS_DEBUG "-std=c99 -O0 -DDEBUG -g")
-set(CMAKE_CXX_FLAGS_RELEASE "-std=c++11 -O3")
-set(CMAKE_C_FLAGS_RELEASE "-std=c99 -O3")
+if(CMAKE_COMPILER_IS_GNUCC)
+	set(CMAKE_C_FLAGS_DEBUG "-std=c99 -O0 -DDEBUG -g")
+	set(CMAKE_C_FLAGS_RELEASE "-std=c99 -O3")
+endif()
+
+if(CMAKE_COMPILER_IS_GNUCXX)
+	set(CMAKE_CXX_FLAGS_DEBUG "-std=c++11 -O0 -DDEBUG -g")
+	set(CMAKE_CXX_FLAGS_RELEASE "-std=c++11 -O3")
+endif()
 
 set(SOURCE_LITEHTML src/background.cpp
                     src/box.cpp
@@ -57,6 +62,9 @@ set(SOURCE_GUMBO    src/gumbo/attribute.c
                     src/gumbo/util.c
                     src/gumbo/vector.c
 )
+
+source_group("litehtml" FILES ${SOURCE_LITEHTML})
+source_group("gumbo" FILES ${SOURCE_GUMBO})
 
 add_library(litehtml STATIC ${SOURCE_LITEHTML} ${SOURCE_GUMBO})
 
