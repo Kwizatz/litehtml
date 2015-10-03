@@ -31,6 +31,7 @@ namespace litehtml
 	class document_container
 	{
 	public:
+		virtual ~document_container() {};
 		virtual litehtml::uint_ptr	create_font(const litehtml::tchar_t* faceName, int size, int weight, litehtml::font_style italic, unsigned int decoration, litehtml::font_metrics* fm) = 0;
 		virtual void				delete_font(litehtml::uint_ptr hFont) = 0;
 		virtual int					text_width(const litehtml::tchar_t* text, litehtml::uint_ptr hFont) = 0;
